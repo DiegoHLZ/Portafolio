@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* DOT STYLE */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(82, 86, 111, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Hover: formar cruz */
+.group:hover .dot {
+  transform: scale(0);
+}
+
+.group:hover .dot.center {
+  transform: scale(1.2);
+}
+
+.group:hover .dot:nth-child(2),
+.group:hover .dot:nth-child(4),
+.group:hover .dot:nth-child(6),
+.group:hover .dot:nth-child(8) {
+  transform: scale(1.2);
+}
+
+/* HOVER → cruz */
+.group:hover .dot {
+  opacity: 0.2;
+}
+
+.group:hover .dot.center {
+  opacity: 1;
+  transform: scale(1.4);
+  background: #7c3aed;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
