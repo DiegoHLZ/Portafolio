@@ -1,101 +1,86 @@
 <main
   (mousemove)="onMouseMove($event)"
-  [ngClass]="darkMode ? 'bg-[#242630] text-white' : 'bg-[#f6f4ef] text-[#52566f]'"
-  class="relative min-h-screen overflow-x-hidden cursor-none transition-colors duration-500"
+  class="relative min-h-screen overflow-x-hidden cursor-none main-theme"
 >
+  <!-- PARTICLES / SAFARI FALLBACK -->
+  <ngx-particles
+    *ngIf="!isSafari"
+    [id]="id"
+    [options]="particlesOptions"
+    class="fixed inset-0 z-0 pointer-events-none"
+  ></ngx-particles>
+
+  <div *ngIf="isSafari" class="safari-neural-bg"></div>
 
   <!-- CURSOR -->
   <div
-    class="pointer-events-none fixed z-[9999] w-5 h-5 rounded-full bg-[#52566f] mix-blend-difference"
-    [style.left.px]="mouseX"
-    [style.top.px]="mouseY"
-    style="transform: translate(-50%, -50%)"
-  ></div>
-
-  <div
-    class="pointer-events-none fixed z-[9998] w-12 h-12 rounded-full border border-[#52566f]/50"
-    [style.left.px]="mouseX"
-    [style.top.px]="mouseY"
-    style="transform: translate(-50%, -50%)"
-  ></div>
+  class="custom-cursor"
+  [style.left.px]="mouseX"
+  [style.top.px]="mouseY"
+></div>
 
   <!-- FULLSCREEN MENU -->
-<!-- FULLSCREEN MENU -->
-<div
-  (click)="closeMenu()"
-  [ngClass]="menuOpen
-    ? 'opacity-100 pointer-events-auto'
-    : 'opacity-0 pointer-events-none'"
-  class="fixed inset-0 z-40 bg-[#242630]/90 text-white backdrop-blur-xl transition-all duration-700 ease-out"
->
-
-  <!-- blobs se van hacia la izquierda -->
   <div
-    [ngClass]="menuOpen ? '-translate-x-24 opacity-40' : 'translate-x-0 opacity-0'"
-    class="absolute left-0 top-0 w-[420px] h-full transition-all duration-700 ease-out"
+    (click)="closeMenu()"
+    [ngClass]="menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+    class="fixed inset-0 z-40 bg-[#020617]/95 text-white backdrop-blur-xl transition-all duration-700 ease-out"
   >
-    <div class="absolute top-24 -left-20 w-80 h-44 rounded-[50%] bg-black/30 blur-sm"></div>
-    <div class="absolute top-72 left-10 w-72 h-44 rounded-[50%] bg-black/30 blur-sm"></div>
-    <div class="absolute bottom-24 left-20 w-72 h-44 rounded-[50%] bg-black/30 blur-sm"></div>
-  </div>
-
-  <div
-    (click)="$event.stopPropagation()"
-    [ngClass]="menuOpen
-      ? 'opacity-100 translate-x-0 scale-100'
-      : 'opacity-0 translate-x-16 scale-95'"
-    class="relative z-10 w-full max-w-4xl mx-auto px-8 pt-44 transition-all duration-700 ease-out"
-  >
-    <div class="flex flex-col gap-3 text-6xl md:text-8xl font-black uppercase leading-none">
-      <a href="#home" (click)="closeMenu()" class="hover:text-purple-400 transition">
-        <span class="text-xl mr-4">01</span>
-        {{ language === 'en' ? 'Home' : 'Inicio' }}
-      </a>
-
-      <a href="#projects" (click)="closeMenu()" class="hover:text-purple-400 transition">
-        <span class="text-xl mr-4">02</span>
-        {{ language === 'en' ? 'Work' : 'Proyectos' }}
-      </a>
-
-      <a href="#about" (click)="closeMenu()" class="hover:text-purple-400 transition">
-        <span class="text-xl mr-4">03</span>
-        {{ language === 'en' ? 'About' : 'Sobre mí' }}
-      </a>
-
-      <a href="#contact" (click)="closeMenu()" class="hover:text-purple-400 transition">
-        <span class="text-xl mr-4">04</span>
-        {{ language === 'en' ? 'Contact' : 'Contacto' }}
-      </a>
+    <div
+      [ngClass]="menuOpen ? '-translate-x-24 opacity-40' : 'translate-x-0 opacity-0'"
+      class="absolute left-0 top-0 w-[420px] h-full transition-all duration-700 ease-out"
+    >
+      <div class="absolute top-24 -left-20 w-80 h-44 rounded-[50%] bg-cyan-500/20 blur-2xl"></div>
+      <div class="absolute top-72 left-10 w-72 h-44 rounded-[50%] bg-purple-500/20 blur-2xl"></div>
+      <div class="absolute bottom-24 left-20 w-72 h-44 rounded-[50%] bg-indigo-500/20 blur-2xl"></div>
     </div>
 
-    <div class="mt-10 flex gap-8 text-2xl font-semibold">
-      <a href="https://github.com/TU_USUARIO" target="_blank" class="hover:text-purple-400 transition">
-        ↗ GitHub
-      </a>
+    <div
+      (click)="$event.stopPropagation()"
+      [ngClass]="menuOpen ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-16 scale-95'"
+      class="relative z-10 w-full max-w-4xl mx-auto px-8 pt-44 transition-all duration-700 ease-out"
+    >
+      <div class="flex flex-col gap-3 text-6xl md:text-8xl font-black uppercase leading-none">
+        <a href="#home" (click)="closeMenu()" class="hover:text-cyan-300 transition">
+          <span class="text-xl mr-4">01</span>
+          {{ language === 'en' ? 'Home' : 'Inicio' }}
+        </a>
 
-      <a href="https://www.linkedin.com/in/TU_USUARIO" target="_blank" class="hover:text-purple-400 transition">
-        ↗ LinkedIn
-      </a>
+        <a href="#projects" (click)="closeMenu()" class="hover:text-cyan-300 transition">
+          <span class="text-xl mr-4">02</span>
+          {{ language === 'en' ? 'Work' : 'Proyectos' }}
+        </a>
+
+        <a href="#about" (click)="closeMenu()" class="hover:text-cyan-300 transition">
+          <span class="text-xl mr-4">03</span>
+          {{ language === 'en' ? 'About' : 'Sobre mí' }}
+        </a>
+
+        <a href="#contact" (click)="closeMenu()" class="hover:text-cyan-300 transition">
+          <span class="text-xl mr-4">04</span>
+          {{ language === 'en' ? 'Contact' : 'Contacto' }}
+        </a>
+      </div>
+
+      <div class="mt-10 flex gap-8 text-2xl font-semibold">
+        <a href="https://github.com/TU_USUARIO" target="_blank" class="hover:text-cyan-300 transition">
+          ↗ GitHub
+        </a>
+
+        <a href="https://www.linkedin.com/in/TU_USUARIO" target="_blank" class="hover:text-cyan-300 transition">
+          ↗ LinkedIn
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- NAVBAR -->
   <nav class="fixed top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-50">
-    <h1 class="text-xl font-bold">Diego.dev</h1>
+    <h1 class="text-xl font-bold text-white">Diego.dev</h1>
 
     <div class="flex items-center gap-6">
-
-      <button
-      (click)="toggleDarkMode()"
-      class="text-xl hover:text-purple-500 transition"
-    >
-      {{ darkMode ? '☀' : '☾' }}
-    </button>
-
       <button
         (click)="toggleLanguage()"
-        class="px-4 py-2 rounded-full border border-[#52566f]/30"
+        class="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition flex items-center justify-center text-sm font-medium text-slate-200"
       >
         {{ language === 'en' ? 'ES' : 'EN' }}
       </button>
@@ -112,11 +97,9 @@
           <span class="dot"></span>
           <span class="dot center"></span>
           <span class="dot"></span>
-
           <span class="dot center"></span>
           <span class="dot center"></span>
           <span class="dot center"></span>
-
           <span class="dot"></span>
           <span class="dot center"></span>
           <span class="dot"></span>
@@ -124,7 +107,7 @@
 
         <span
           [ngClass]="menuOpen ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-75 -rotate-90'"
-          class="absolute text-5xl leading-none transition-all duration-500 ease-out"
+          class="absolute text-5xl leading-none text-white transition-all duration-500 ease-out"
         >
           ×
         </span>
@@ -133,65 +116,81 @@
   </nav>
 
   <!-- HOME -->
-  <section id="home" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+  <section
+    id="home"
+    class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden"
+  >
+    <!-- GRID TECH -->
+    <div
+      class="absolute inset-0 opacity-[0.07] pointer-events-none"
+      style="
+        background-image:
+          linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+        background-size: 48px 48px;
+      "
+    ></div>
 
-    <!-- BLOBS -->
-    <div class="absolute -top-40 -left-32 w-[520px] h-[420px] rounded-[45%_55%] bg-gradient-to-br from-lime-200 via-emerald-300 to-cyan-300 blur-2xl"></div>
-
-    <div class="absolute -bottom-40 -left-10 w-[520px] h-[320px] rounded-[60%_40%] bg-gradient-to-br from-blue-300 via-purple-300 to-pink-200 blur-2xl"></div>
-
-    <div class="absolute -top-20 right-0 w-[520px] h-[360px] rounded-[55%_45%] bg-gradient-to-br from-pink-200 via-yellow-200 to-emerald-200 blur-2xl"></div>
-
-    <div class="absolute right-0 bottom-10 w-[380px] h-[360px] rounded-[45%_55%] bg-gradient-to-br from-cyan-300 via-emerald-300 to-blue-300 blur-2xl"></div>
+    <div class="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-indigo-600/30 blur-[120px]"></div>
+    <div class="absolute -bottom-40 -right-40 w-[560px] h-[560px] rounded-full bg-cyan-500/25 blur-[130px]"></div>
+    <div class="absolute top-1/2 left-1/2 w-[420px] h-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/10 blur-[140px]"></div>
 
     <!-- HERO -->
-    <div class="relative z-10 text-center max-w-5xl">
-
-      <p class="text-xl mb-4">
+    <div class="relative z-10 text-center max-w-5xl mx-auto -translate-y-6">
+      <p class="text-sm md:text-base tracking-[0.35em] uppercase text-slate-400 mb-5">
         {{ language === 'en' ? "HEY, I'M" : "HOLA, SOY" }}
       </p>
 
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-white">
         Diego Huincho
       </h1>
 
-      <h2 class="mt-4 text-2xl md:text-3xl font-medium text-gray-500">
+      <h2 class="mt-5 text-2xl md:text-4xl font-medium text-slate-400">
         {{ language === 'en' ? 'Full Stack Developer' : 'Desarrollador Full Stack' }}
       </h2>
 
-      <p class="mt-6 text-xl max-w-3xl mx-auto">
+      <p class="mt-7 text-lg md:text-xl max-w-3xl mx-auto text-slate-300 leading-relaxed">
         {{ language === 'en'
           ? 'Software Engineering student building modern, scalable and useful digital products.'
           : 'Estudiante de Ingeniería de Software creando productos digitales modernos y escalables.' }}
       </p>
 
-      <div class="mt-10 flex justify-center gap-10 text-xl">
-        <a href="#projects">→ {{ language === 'en' ? 'see my projects' : 'ver mis proyectos' }}</a>
-        <a href="#about">→ {{ language === 'en' ? 'more about me' : 'más sobre mí' }}</a>
-      </div>
+      <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-5 text-base md:text-lg">
+        <a
+          href="#projects"
+          class="px-6 py-3 rounded-full border border-white/15 bg-white/5 hover:bg-cyan-400/10 hover:border-cyan-400/50 transition"
+        >
+          → {{ language === 'en' ? 'see my projects' : 'ver mis proyectos' }}
+        </a>
 
+        <a
+          href="#about"
+          class="px-6 py-3 rounded-full border border-white/15 bg-white/5 hover:bg-purple-400/10 hover:border-purple-400/50 transition"
+        >
+          → {{ language === 'en' ? 'more about me' : 'más sobre mí' }}
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="min-h-screen flex items-center justify-center px-6">
-    <h2 class="text-5xl font-black">
+  <section id="about" class="relative z-10 min-h-screen flex items-center justify-center px-6">
+    <h2 class="text-5xl font-black text-white">
       {{ language === 'en' ? 'About Me' : 'Sobre mí' }}
     </h2>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="min-h-screen flex items-center justify-center px-6">
-    <h2 class="text-5xl font-black">
+  <section id="projects" class="relative z-10 min-h-screen flex items-center justify-center px-6">
+    <h2 class="text-5xl font-black text-white">
       {{ language === 'en' ? 'Projects' : 'Proyectos' }}
     </h2>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="min-h-screen flex items-center justify-center px-6">
-    <h2 class="text-5xl font-black">
+  <section id="contact" class="relative z-10 min-h-screen flex items-center justify-center px-6">
+    <h2 class="text-5xl font-black text-white">
       {{ language === 'en' ? 'Contact' : 'Contacto' }}
     </h2>
   </section>
-
 </main>

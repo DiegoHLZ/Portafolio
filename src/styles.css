@@ -6,7 +6,46 @@ html {
   scroll-behavior: smooth;
 }
 
-/* DOT STYLE */
+body {
+  font-family: 'Inter', sans-serif;
+  cursor: default;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+
+  width: 14px;
+  height: 14px;
+
+  border-radius: 9999px;
+
+  background: rgba(139, 92, 246, 0.75);
+
+  box-shadow:
+    0 0 12px rgba(139, 92, 246, 0.9),
+    0 0 28px rgba(139, 92, 246, 0.45);
+
+  transform: translate(-50%, -50%);
+
+  transition:
+    transform 0.04s linear,
+    opacity 0.2s ease;
+}
+
+/* ===== DOT MENU ===== */
+
+.group {
+  transition: transform 0.3s ease;
+}
+
+.group:hover {
+  transform: scale(1.08);
+}
+
 .dot {
   width: 8px;
   height: 8px;
@@ -15,24 +54,8 @@ html {
   transition: all 0.3s ease;
 }
 
-/* Hover: formar cruz */
 .group:hover .dot {
   transform: scale(0);
-}
-
-.group:hover .dot.center {
-  transform: scale(1.2);
-}
-
-.group:hover .dot:nth-child(2),
-.group:hover .dot:nth-child(4),
-.group:hover .dot:nth-child(6),
-.group:hover .dot:nth-child(8) {
-  transform: scale(1.2);
-}
-
-/* HOVER → cruz */
-.group:hover .dot {
   opacity: 0.2;
 }
 
@@ -42,6 +65,72 @@ html {
   background: #7c3aed;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
+.group:hover .dot:nth-child(2),
+.group:hover .dot:nth-child(4),
+.group:hover .dot:nth-child(6),
+.group:hover .dot:nth-child(8) {
+  transform: scale(1.2);
+}
+
+/* ===== MAIN THEME ===== */
+
+.main-theme {
+  background: #020617;
+  color: #e2e8f0;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+/* ===== GLOW EFFECT ===== */
+
+.main-theme::before,
+.main-theme::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.main-theme::before {
+  background: #6366f1;
+  top: -150px;
+  left: -150px;
+  animation: floatGlow 10s ease-in-out infinite;
+}
+
+.main-theme::after {
+  background: #06b6d4;
+  bottom: -150px;
+  right: -150px;
+  animation: floatGlow 12s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(40px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ===== SAFARI LIGHT VERSION ===== */
+
+.safari-neural-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(139, 92, 246, 0.28), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(6, 182, 212, 0.22), transparent 30%),
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    48px 48px,
+    48px 48px;
 }
