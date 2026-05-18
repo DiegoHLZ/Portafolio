@@ -62,11 +62,11 @@
       </div>
 
       <div class="mt-10 flex gap-8 text-2xl font-semibold">
-        <a href="https://github.com/TU_USUARIO" target="_blank" class="hover:text-cyan-300 transition">
+        <a href="https://github.com/DiegoHLZ" target="_blank" class="hover:text-cyan-300 transition">
           ↗ GitHub
         </a>
 
-        <a href="https://www.linkedin.com/in/TU_USUARIO" target="_blank" class="hover:text-cyan-300 transition">
+        <a href="https://www.linkedin.com/in/diego-huincho-b4619028b/" target="_blank" class="hover:text-cyan-300 transition">
           ↗ LinkedIn
         </a>
       </div>
@@ -174,10 +174,82 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="relative z-10 min-h-screen flex items-center justify-center px-6">
-    <h2 class="text-5xl font-black text-white">
-      {{ language === 'en' ? 'About Me' : 'Sobre mí' }}
-    </h2>
+  <section
+    id="about"
+    class="relative z-10 min-h-screen flex items-center px-6 py-24"
+  >
+    <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- LEFT CONTENT -->
+      <div>
+        <p class="text-sm tracking-[0.35em] uppercase text-cyan-300 mb-5">
+          {{ language === 'en' ? 'About me' : 'Sobre mí' }}
+        </p>
+
+        <h2 class="text-4xl md:text-6xl font-black text-white leading-tight">
+          {{ language === 'en'
+            ? 'Building digital products with clean code and purpose.'
+            : 'Construyendo productos digitales con código limpio y propósito.' }}
+        </h2>
+
+        <p class="mt-7 text-lg text-slate-300 leading-relaxed">
+          {{ language === 'en'
+            ? 'I am a Software Engineering student focused on full stack development. I enjoy creating modern, scalable and useful web applications, combining attractive interfaces with solid backend logic.'
+            : 'Soy estudiante de Ingeniería de Software enfocado en el desarrollo full stack. Me gusta crear aplicaciones web modernas, escalables y útiles, combinando interfaces atractivas con una lógica backend sólida.' }}
+        </p>
+
+        <p class="mt-5 text-lg text-slate-400 leading-relaxed">
+          {{ language === 'en'
+            ? 'My main stack includes Angular, Spring Boot, PostgreSQL, Tailwind CSS and Git. I am currently improving my portfolio with projects that solve real problems and demonstrate both frontend and backend skills.'
+            : 'Mi stack principal incluye Angular, Spring Boot, PostgreSQL, Tailwind CSS y Git. Actualmente estoy fortaleciendo mi portafolio con proyectos que resuelven problemas reales y demuestran habilidades tanto frontend como backend.' }}
+        </p>
+      </div>
+
+      <!-- RIGHT CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <div class="about-card">
+          <span class="text-3xl">💻</span>
+          <h3 class="mt-5 text-xl font-bold text-white">
+            {{ language === 'en' ? 'Frontend' : 'Frontend' }}
+          </h3>
+          <p class="mt-3 text-slate-400">
+            Angular, Tailwind CSS, responsive interfaces and modern UI animations.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <span class="text-3xl">⚙️</span>
+          <h3 class="mt-5 text-xl font-bold text-white">
+            Backend
+          </h3>
+          <p class="mt-3 text-slate-400">
+            Spring Boot, REST APIs, JWT authentication and PostgreSQL databases.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <span class="text-3xl">🚀</span>
+          <h3 class="mt-5 text-xl font-bold text-white">
+            {{ language === 'en' ? 'Projects' : 'Proyectos' }}
+          </h3>
+          <p class="mt-3 text-slate-400">
+            Bookify, GPU Management, Full Stack Notes App and SaaS ideas.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <span class="text-3xl">🧠</span>
+          <h3 class="mt-5 text-xl font-bold text-white">
+            {{ language === 'en' ? 'Learning' : 'Aprendizaje' }}
+          </h3>
+          <p class="mt-3 text-slate-400">
+            Software architecture, DevOps, cloud deployment and scalable systems.
+          </p>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <!-- PROJECTS -->
