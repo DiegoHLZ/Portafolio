@@ -152,3 +152,102 @@ body {
   border-color: rgba(56, 189, 248, 0.35);
   background: rgba(255, 255, 255, 0.07);
 }
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.025)
+    );
+  backdrop-filter: blur(16px);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(56, 189, 248, 0.35);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56, 189, 248, 0.12),
+      rgba(139, 92, 246, 0.08)
+    );
+}
+
+.project-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #67e8f9;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+}
+
+.tech-pill {
+  display: inline-flex;
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-preview {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.75);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.preview-bar {
+  height: 44px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.preview-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.7);
+}
+
+.preview-content {
+  padding: 24px;
+}
+
+.preview-line {
+  height: 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+  opacity: 0.65;
+}
+
+.preview-box {
+  margin-top: 24px;
+  height: 150px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.35), transparent 35%),
+    linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+}

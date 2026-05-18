@@ -252,12 +252,110 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="relative z-10 min-h-screen flex items-center justify-center px-6">
-    <h2 class="text-5xl font-black text-white">
-      {{ language === 'en' ? 'Projects' : 'Proyectos' }}
-    </h2>
-  </section>
+ <!-- PROJECTS -->
+<section
+  id="projects"
+  class="relative z-10 min-h-screen px-6 py-24"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="text-sm tracking-[0.35em] uppercase text-cyan-300 mb-5">
+        {{ language === 'en' ? 'Selected work' : 'Proyectos destacados' }}
+      </p>
+
+      <h2 class="text-4xl md:text-6xl font-black text-white">
+        {{ language === 'en' ? 'Projects' : 'Proyectos' }}
+      </h2>
+
+      <p class="mt-5 text-lg text-slate-400 max-w-2xl mx-auto">
+        {{ language === 'en'
+          ? 'A collection of projects focused on web development, backend logic and real-world software solutions.'
+          : 'Una colección de proyectos enfocados en desarrollo web, lógica backend y soluciones de software reales.' }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- BOOKIFY -->
+      <article class="project-card md:col-span-2">
+        <div class="flex flex-col lg:flex-row gap-8 items-center">
+          <div class="flex-1">
+            <span class="project-badge">SaaS / Full Stack</span>
+
+            <h3 class="mt-5 text-3xl md:text-4xl font-black text-white">
+              Bookify
+            </h3>
+
+            <p class="mt-4 text-slate-400 leading-relaxed">
+              {{ language === 'en'
+                ? 'A reservation management platform for service businesses, built with a modular architecture, authentication, service scheduling and booking logic.'
+                : 'Plataforma de gestión de reservas para negocios de servicios, construida con arquitectura modular, autenticación, horarios de atención y lógica de reservas.' }}
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <span class="tech-pill">Angular</span>
+              <span class="tech-pill">Spring Boot</span>
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">JWT</span>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <div class="preview-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="preview-content">
+              <div class="preview-line w-3/4"></div>
+              <div class="preview-line w-1/2"></div>
+              <div class="preview-box"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- GPU MANAGEMENT -->
+      <article class="project-card">
+        <span class="project-badge">Enterprise System</span>
+
+        <h3 class="mt-5 text-2xl font-black text-white">
+          GPU Management
+        </h3>
+
+        <p class="mt-4 text-slate-400 leading-relaxed">
+          {{ language === 'en'
+            ? 'System for managing GPU requests, availability and assignments in an enterprise environment.'
+            : 'Sistema para gestionar solicitudes, disponibilidad y asignación de GPUs en un entorno empresarial.' }}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <span class="tech-pill">Angular</span>
+          <span class="tech-pill">Spring Boot</span>
+          <span class="tech-pill">REST API</span>
+        </div>
+      </article>
+
+      <!-- NOTES APP -->
+      <article class="project-card">
+        <span class="project-badge">Full Stack App</span>
+
+        <h3 class="mt-5 text-2xl font-black text-white">
+          Notes App
+        </h3>
+
+        <p class="mt-4 text-slate-400 leading-relaxed">
+          {{ language === 'en'
+            ? 'Full stack notes application with authentication, categories, filtering, archive and note management.'
+            : 'Aplicación full stack de notas con autenticación, categorías, filtrado, archivado y gestión de notas.' }}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <span class="tech-pill">Angular</span>
+          <span class="tech-pill">JWT</span>
+          <span class="tech-pill">PostgreSQL</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
   <!-- CONTACT -->
   <section id="contact" class="relative z-10 min-h-screen flex items-center justify-center px-6">
