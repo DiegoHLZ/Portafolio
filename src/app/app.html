@@ -24,7 +24,8 @@
       <a href="#home" (click)="closeMenu()"><small>01</small>{{ language === 'es' ? 'Inicio' : 'Home' }}</a>
       <a href="#about" (click)="closeMenu()"><small>02</small>{{ language === 'es' ? 'Sobre mí' : 'About' }}</a>
       <a href="#projects" (click)="closeMenu()"><small>03</small>{{ language === 'es' ? 'Proyectos' : 'Projects' }}</a>
-      <a href="#contact" (click)="closeMenu()"><small>04</small>{{ language === 'es' ? 'Contacto' : 'Contact' }}</a>
+      <a href="#design" (click)="closeMenu()"><small>04</small>{{ language === 'es' ? 'Mockups' : 'Mockups' }}</a>
+      <a href="#contact" (click)="closeMenu()"><small>05</small>{{ language === 'es' ? 'Contacto' : 'Contact' }}</a>
     </nav>
     <p>{{ language === 'es' ? 'Disponible para prácticas, colaboraciones y proyectos con propósito.' : 'Available for internships, collaborations and purposeful projects.' }}</p>
   </div>
@@ -154,8 +155,63 @@
       </article>
     </section>
 
+    <section id="design" class="design-section">
+      <header class="design-heading">
+        <p>04 / PRODUCT THINKING</p>
+        <h2>{{ language === 'es' ? 'Antes del código, diseño el recorrido.' : 'Before the code, I design the journey.' }}</h2>
+        <p>{{ language === 'es'
+          ? 'Exploraciones de interfaz, sistemas visuales y prototipos creados en Figma para convertir ideas en experiencias comprensibles.'
+          : 'Interface explorations, visual systems and Figma prototypes that turn ideas into understandable experiences.' }}</p>
+      </header>
+
+      <div class="design-board">
+        <article class="design-piece piece-mockups">
+          <div class="piece-copy">
+            <span>01 / INTERACTIVE FLOW</span>
+            <h3>Mockups</h3>
+            <p>{{ language === 'es' ? 'Archivo de diseño + recorrido navegable.' : 'Design file + navigable flow.' }}</p>
+            <div class="piece-links">
+              <a href="https://www.figma.com/design/qJEigIskgVceMG5MaWfpe5/Mockups?node-id=0-1&t=JOj0jINrYln1MmAb-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Ver diseño' : 'View design' }} ↗</a>
+              <a href="https://www.figma.com/proto/qJEigIskgVceMG5MaWfpe5/Mockups?node-id=111-1637&starting-point-node-id=111%3A1637&t=15PFyDU2j9W3SZeO-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Abrir prototipo' : 'Open prototype' }} ▶</a>
+            </div>
+          </div>
+          <div class="artboard mobile-flow" aria-hidden="true"><i></i><i></i><i></i><b>FLOW / 01</b></div>
+        </article>
+
+        <article class="design-piece piece-comerxia">
+          <div class="artboard commerce-flow" aria-hidden="true"><span>C</span><i></i><i></i><i></i></div>
+          <div class="piece-copy">
+            <span>02 / PRODUCT DESIGN</span>
+            <h3>Comerxia</h3>
+            <p>{{ language === 'es' ? 'Sistema de pantallas y decisiones de interfaz.' : 'A screen system and interface decisions.' }}</p>
+            <a href="https://www.figma.com/design/alRMtOUiPNYMBJuHz5mxLC/Comerxia?node-id=0-1&t=6TTafBisCieS9RTH-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Explorar archivo' : 'Explore file' }} ↗</a>
+          </div>
+        </article>
+
+        <article class="design-piece piece-food">
+          <div class="piece-copy">
+            <span>03 / UX · UI</span>
+            <h3>UniComida</h3>
+            <p>{{ language === 'es' ? 'Concepto de producto y experiencia visual.' : 'Product concept and visual experience.' }}</p>
+            <a href="https://www.figma.com/design/5yYLZdLCKRSypMOFUUKoLH/UniComida?t=6TTafBisCieS9RTH-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Explorar archivo' : 'Explore file' }} ↗</a>
+          </div>
+          <div class="artboard food-flow" aria-hidden="true"><b>U</b><span></span><span></span></div>
+        </article>
+
+        <article class="design-piece piece-exploration">
+          <div class="piece-copy">
+            <span>04 / VISUAL STUDY</span>
+            <h3>UI<br />Exploration</h3>
+            <p>{{ language === 'es' ? 'Estudio visual y exploración de interfaz.' : 'Visual study and interface exploration.' }}</p>
+            <a href="https://www.figma.com/design/4rr6aJnpDfuM3eIRhE9jI4/Untitled?node-id=0-1&t=SSj63ySfrtMoBzda-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Explorar archivo' : 'Explore file' }} ↗</a>
+          </div>
+          <div class="exploration-mark" aria-hidden="true">UI<span>04</span></div>
+        </article>
+      </div>
+    </section>
+
     <section id="contact" class="contact">
-      <p class="eyebrow"><span></span>04 / {{ language === 'es' ? 'Contacto' : 'Contact' }}</p>
+      <p class="eyebrow"><span></span>05 / {{ language === 'es' ? 'Contacto' : 'Contact' }}</p>
       <h2>{{ language === 'es' ? '¿Qué podemos construir?' : 'What can we build?' }}</h2>
       <a class="contact-mail" href="mailto:huinchodiego@gmail.com">huinchodiego&#64;gmail.com <span>↗</span></a>
       <footer>
