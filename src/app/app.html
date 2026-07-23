@@ -97,6 +97,10 @@
             ? 'Una plataforma de reservas para negocios de servicios. Arquitectura modular, autenticación y lógica de disponibilidad que convierte una agenda compleja en un flujo simple.'
             : 'A booking platform for service businesses. Modular architecture, authentication and availability logic that turns a complex schedule into a simple flow.' }}</p>
           <ul><li>Angular</li><li>Spring Boot</li><li>PostgreSQL</li><li>JWT</li></ul>
+          <div class="case-actions">
+            <a href="https://github.com/DiegoHLZ/bookify" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+            <span class="backend-note">API REST · Spring Security · Java 17</span>
+          </div>
         </div>
         <div class="case-visual bookify-visual" aria-hidden="true">
           <div class="calendar"><b>BOOK / 08:30</b><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -112,20 +116,41 @@
             ? 'Sistema para organizar solicitudes, disponibilidad y asignaciones de GPUs en un entorno empresarial.'
             : 'A system for organizing GPU requests, availability and assignments in an enterprise environment.' }}</p>
           <ul><li>Angular</li><li>Spring Boot</li><li>REST API</li></ul>
+          <div class="case-actions">
+            <a href="https://github.com/DiegoHLZ/sistema-gestion-gpus" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+            <span class="backend-note">JWT · OpenAPI · PostgreSQL</span>
+          </div>
         </div>
-        <div class="case-mark" aria-hidden="true">GPU<span>↗</span></div>
+        <div class="case-visual gpu-visual" aria-hidden="true">
+          <header><b>GPU / CONTROL</b><i>LIVE</i></header>
+          <div class="gpu-stats"><span><small>AVAILABLE</small>08</span><span><small>ASSIGNED</small>14</span></div>
+          <div class="gpu-row"><i></i><b>RTX 4090</b><small>ONLINE</small></div>
+          <div class="gpu-row"><i></i><b>A100 80GB</b><small>IN USE</small></div>
+          <div class="gpu-modules">REQUESTS · ASSIGNMENTS · PAYMENTS · REPORTS</div>
+        </div>
       </article>
 
       <article class="case">
-        <div class="case-meta"><span>03</span><p>PRODUCTIVITY<br />FULL STACK</p></div>
+        <div class="case-meta"><span>03</span><p>OPERATIONS<br />DASHBOARD</p></div>
         <div class="case-body">
-          <h3>Notes<br />App</h3>
+          <h3>Printer<br />Center</h3>
           <p>{{ language === 'es'
-            ? 'Notas con autenticación, categorías, filtros y archivo: información accesible sin ruido.'
-            : 'Notes with authentication, categories, filters and archiving: information available without noise.' }}</p>
-          <ul><li>Angular</li><li>JWT</li><li>PostgreSQL</li></ul>
+            ? 'Dashboard operativo para monitorear impresoras, consultar su disponibilidad y centralizar la información técnica consumida desde una API.'
+            : 'An operations dashboard to monitor printers, check availability and centralize technical information consumed from an API.' }}</p>
+          <ul><li>React 19</li><li>TypeScript</li><li>Material UI</li><li>Axios</li></ul>
+          <div class="case-actions">
+            <a href="https://github.com/DiegoHLZ/proservv-printer-center" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+            <span class="backend-note">REST integration · Typed services</span>
+          </div>
         </div>
-        <div class="case-mark notes-mark" aria-hidden="true">N<span>03</span></div>
+        <div class="case-visual printer-visual" aria-hidden="true">
+          <div class="printer-sidebar"><b>P</b><i></i><i></i><i></i></div>
+          <div class="printer-board">
+            <header><small>PRINTER CENTER</small><b>Dashboard</b></header>
+            <div class="printer-kpis"><span><small>TOTAL</small>12</span><span><small>ONLINE</small>09</span><span><small>OFFLINE</small>03</span></div>
+            <div class="printer-table"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
       </article>
     </section>
 

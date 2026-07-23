@@ -73,12 +73,41 @@ button { color:inherit; font:inherit; }
 .case-body>p { max-width:600px; line-height:1.65; }
 .case-body ul { list-style:none; padding:0; margin:2.5rem 0 0; display:flex; flex-wrap:wrap; gap:.5rem; }
 .case-body li { border:1px solid var(--ink); border-radius:99px; padding:.55rem .8rem; font:500 .6rem 'DM Mono'; text-transform:uppercase; }
+.case-actions { margin-top:2rem; display:flex; align-items:center; flex-wrap:wrap; gap:1rem 1.4rem; }
+.case-actions>a { display:inline-flex; align-items:center; justify-content:space-between; gap:2rem; min-width:135px; padding:.85rem 1rem; background:var(--ink); color:white; font:500 .62rem 'DM Mono'; text-transform:uppercase; transition:background .2s,color .2s,transform .2s; }
+.case-actions>a span { color:var(--acid); font-size:1rem; }
+.case-actions>a:hover { background:var(--blue); transform:translateY(-3px); }
+.backend-note { font:400 .57rem 'DM Mono'; text-transform:uppercase; color:#706e68; }
 .case-visual { position:relative; min-height:360px; background:var(--blue); color:white; overflow:hidden; transform:rotate(2deg); }
 .calendar { position:absolute; inset:15% 12%; background:var(--paper); color:var(--ink); padding:1.4rem; display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; box-shadow:16px 18px 0 rgba(0,0,0,.25); }
 .calendar b { grid-column:1/-1; font:500 .65rem 'DM Mono'; }
 .calendar i { aspect-ratio:1; border:1px solid var(--line); }
 .calendar i:nth-of-type(5) { background:var(--acid); }
 .case-visual>span { position:absolute; bottom:1rem; right:1rem; text-align:right; font:500 .57rem/1.3 'DM Mono'; }
+.gpu-visual { background:#0d1110; padding:1.25rem; transform:rotate(-2deg); font-family:'DM Mono'; }
+.gpu-visual>header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #354039; padding-bottom:1rem; font-size:.62rem; }
+.gpu-visual>header i { color:var(--acid); font-style:normal; }
+.gpu-stats { display:grid; grid-template-columns:1fr 1fr; gap:.65rem; margin:1rem 0; }
+.gpu-stats span { background:#1a211e; padding:1rem; font-size:2rem; color:var(--acid); }
+.gpu-stats small { display:block; color:#8c9690; font-size:.5rem; margin-bottom:.5rem; }
+.gpu-row { display:grid; grid-template-columns:12px 1fr auto; gap:.65rem; align-items:center; border-top:1px solid #354039; padding:.9rem .25rem; font-size:.62rem; }
+.gpu-row i { width:7px;height:7px;border-radius:50%;background:#55d678;box-shadow:0 0 10px #55d678; }
+.gpu-row small { color:#8c9690; font-size:.5rem; }
+.gpu-modules { position:absolute; bottom:1rem; left:1.25rem; right:1.25rem; color:#77827b; font-size:.45rem; letter-spacing:.08em; }
+.printer-visual { background:#e8e9ed; color:#12131a; display:grid; grid-template-columns:52px 1fr; transform:rotate(2deg); padding:0; }
+.printer-sidebar { background:#171925; color:white; display:flex; flex-direction:column; align-items:center; gap:1.25rem; padding-top:1rem; }
+.printer-sidebar b { display:grid;place-items:center;width:27px;height:27px;background:var(--blue);font-size:.8rem; }
+.printer-sidebar i { width:15px;height:3px;background:#666b79;border-radius:4px; }
+.printer-board { padding:1.25rem; }
+.printer-board header small { display:block; color:#777b87; font:400 .45rem 'DM Mono'; }
+.printer-board header b { display:block; font-size:1.25rem; margin-top:.3rem; }
+.printer-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:.45rem; margin:1.1rem 0; }
+.printer-kpis span { background:white; padding:.75rem; font:700 1.15rem 'DM Mono'; box-shadow:0 4px 14px rgba(0,0,0,.06); }
+.printer-kpis small { display:block; color:#858995; font-size:.42rem; margin-bottom:.4rem; }
+.printer-table { background:white; padding:.75rem; }
+.printer-table i { display:block;height:30px;border-bottom:1px solid #e4e5e9;position:relative; }
+.printer-table i::before { content:'';position:absolute;top:10px;left:0;width:38%;height:6px;background:#cfd1d8; }
+.printer-table i::after { content:'';position:absolute;top:10px;right:0;width:18%;height:6px;background:#89d7a0; }
 .case-mark { justify-self:center; width:min(22vw,270px); aspect-ratio:1; border-radius:50%; background:var(--acid); display:grid; place-items:center; font-size:clamp(2.5rem,5vw,5rem); font-weight:800; letter-spacing:-.08em; transform:rotate(7deg); }
 .case-mark span { position:absolute; font:400 .8rem 'DM Mono'; transform:translateY(4rem); }
 .notes-mark { background:var(--ink); color:white; border-radius:0; transform:rotate(-5deg); }
