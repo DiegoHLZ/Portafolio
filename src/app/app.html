@@ -1,425 +1,143 @@
-<main
-  (mousemove)="onMouseMove($event)"
-  class="relative min-h-screen overflow-x-hidden cursor-none main-theme"
->
-  <!-- PARTICLES / SAFARI FALLBACK -->
-  <ngx-particles
-    *ngIf="!isSafari"
-    [id]="id"
-    [options]="particlesOptions"
-    class="fixed inset-0 z-0 pointer-events-none"
-  ></ngx-particles>
+<main>
+  <a class="skip-link" href="#content">{{ language === 'es' ? 'Saltar al contenido' : 'Skip to content' }}</a>
 
-  <div *ngIf="isSafari" class="safari-neural-bg"></div>
+  <div class="cursor" aria-hidden="true" [style.left.px]="mouseX" [style.top.px]="mouseY"></div>
 
-  <!-- CURSOR -->
-  <div
-  class="custom-cursor"
-  [style.left.px]="mouseX"
-  [style.top.px]="mouseY"
-></div>
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="Diego Huincho — inicio">
+      <span>DH</span><small>FULL STACK<br />LIMA, PE</small>
+    </a>
 
-  <!-- FULLSCREEN MENU -->
-  <div
-    (click)="closeMenu()"
-    [ngClass]="menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
-    class="fixed inset-0 z-40 bg-[#020617]/95 text-white backdrop-blur-xl transition-all duration-700 ease-out"
-  >
-    <div
-      [ngClass]="menuOpen ? '-translate-x-24 opacity-40' : 'translate-x-0 opacity-0'"
-      class="absolute left-0 top-0 w-[420px] h-full transition-all duration-700 ease-out"
-    >
-      <div class="absolute top-24 -left-20 w-80 h-44 rounded-[50%] bg-cyan-500/20 blur-2xl"></div>
-      <div class="absolute top-72 left-10 w-72 h-44 rounded-[50%] bg-purple-500/20 blur-2xl"></div>
-      <div class="absolute bottom-24 left-20 w-72 h-44 rounded-[50%] bg-indigo-500/20 blur-2xl"></div>
-    </div>
-
-    <div
-      (click)="$event.stopPropagation()"
-      [ngClass]="menuOpen ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-16 scale-95'"
-      class="relative z-10 w-full max-w-4xl mx-auto px-8 pt-44 transition-all duration-700 ease-out"
-    >
-      <div class="flex flex-col gap-3 text-6xl md:text-8xl font-black uppercase leading-none">
-        <a href="#home" (click)="closeMenu()" class="hover:text-cyan-300 transition">
-          <span class="text-xl mr-4">01</span>
-          {{ language === 'en' ? 'Home' : 'Inicio' }}
-        </a>
-
-        <a href="#about" (click)="closeMenu()" class="hover:text-cyan-300 transition">
-          <span class="text-xl mr-4">02</span>
-          {{ language === 'en' ? 'About' : 'Proyectos' }}
-        </a>
-
-        <a href="#projects" (click)="closeMenu()" class="hover:text-cyan-300 transition">
-          <span class="text-xl mr-4">03</span>
-          {{ language === 'en' ? 'Projects' : 'Sobre mí' }}
-        </a>
-
-        <a href="#contact" (click)="closeMenu()" class="hover:text-cyan-300 transition">
-          <span class="text-xl mr-4">04</span>
-          {{ language === 'en' ? 'Contact' : 'Contacto' }}
-        </a>
-      </div>
-
-      <div class="mt-10 flex gap-8 text-2xl font-semibold">
-        <a href="https://github.com/DiegoHLZ" target="_blank" class="hover:text-cyan-300 transition">
-          ↗ GitHub
-        </a>
-
-        <a href="https://www.linkedin.com/in/diego-huincho-b4619028b/" target="_blank" class="hover:text-cyan-300 transition">
-          ↗ LinkedIn
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 left-0 w-full flex justify-between items-center px-10 py-6 z-50">
-    <h1 class="text-xl font-bold text-white">Diego.dev</h1>
-
-    <div class="flex items-center gap-6">
-      <button
-        (click)="toggleLanguage()"
-        class="w-14 h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition flex items-center justify-center text-sm font-medium text-slate-200"
-      >
-        {{ language === 'en' ? 'ES' : 'EN' }}
+    <div class="header-actions">
+      <button class="language" type="button" (click)="toggleLanguage()" [attr.aria-label]="language === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'">
+        {{ language === 'es' ? 'EN' : 'ES' }}
       </button>
-
-      <!-- DOT MENU -->
-      <button
-        (click)="toggleMenu()"
-        class="group relative w-14 h-14 flex items-center justify-center"
-      >
-        <div
-          [ngClass]="menuOpen ? 'opacity-0 scale-75 rotate-45' : 'opacity-100 scale-100 rotate-0'"
-          class="grid grid-cols-3 gap-1.5 transition-all duration-500 ease-out"
-        >
-          <span class="dot"></span>
-          <span class="dot center"></span>
-          <span class="dot"></span>
-          <span class="dot center"></span>
-          <span class="dot center"></span>
-          <span class="dot center"></span>
-          <span class="dot"></span>
-          <span class="dot center"></span>
-          <span class="dot"></span>
-        </div>
-
-        <span
-          [ngClass]="menuOpen ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-75 -rotate-90'"
-          class="absolute text-5xl leading-none text-white transition-all duration-500 ease-out"
-        >
-          ×
-        </span>
+      <button class="menu-trigger" type="button" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen" aria-controls="site-menu">
+        <span>{{ menuOpen ? (language === 'es' ? 'Cerrar' : 'Close') : 'Menu' }}</span>
+        <i aria-hidden="true"></i>
       </button>
     </div>
-  </nav>
+  </header>
 
-  <!-- HOME -->
-  <section
-    id="home"
-    class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden"
-  >
-    <!-- GRID TECH -->
-    <div
-      class="absolute inset-0 opacity-[0.07] pointer-events-none"
-      style="
-        background-image:
-          linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
-        background-size: 48px 48px;
-      "
-    ></div>
-
-    <div class="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-indigo-600/30 blur-[120px]"></div>
-    <div class="absolute -bottom-40 -right-40 w-[560px] h-[560px] rounded-full bg-cyan-500/25 blur-[130px]"></div>
-    <div class="absolute top-1/2 left-1/2 w-[420px] h-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/10 blur-[140px]"></div>
-
-    <!-- HERO -->
-    <div class="relative z-10 text-center max-w-5xl mx-auto -translate-y-6">
-      <p class="text-sm md:text-base tracking-[0.35em] uppercase text-slate-400 mb-5">
-        {{ language === 'en' ? "HEY, I'M" : "HOLA, SOY" }}
-      </p>
-
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-white">
-        Diego Huincho
-      </h1>
-
-      <h2 class="mt-5 text-2xl md:text-4xl font-medium text-slate-400">
-        {{ language === 'en' ? 'Full Stack Developer' : 'Desarrollador Full Stack' }}
-      </h2>
-
-      <p class="mt-7 text-lg md:text-xl max-w-3xl mx-auto text-slate-300 leading-relaxed">
-        {{ language === 'en'
-          ? 'Software Engineering student building modern, scalable and useful digital products.'
-          : 'Estudiante de Ingeniería de Software creando productos digitales modernos y escalables.' }}
-      </p>
-
-      <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-5 text-base md:text-lg">
-        <a
-          href="#projects"
-          class="px-6 py-3 rounded-full border border-white/15 bg-white/5 hover:bg-cyan-400/10 hover:border-cyan-400/50 transition"
-        >
-          → {{ language === 'en' ? 'see my projects' : 'ver mis proyectos' }}
-        </a>
-
-        <a
-          href="#about"
-          class="px-6 py-3 rounded-full border border-white/15 bg-white/5 hover:bg-purple-400/10 hover:border-purple-400/50 transition"
-        >
-          → {{ language === 'en' ? 'more about me' : 'más sobre mí' }}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section
-    id="about"
-    class="relative z-10 min-h-screen flex items-center px-6 py-24"
-  >
-    <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-      <!-- LEFT CONTENT -->
-      <div>
-        <p class="text-sm tracking-[0.35em] uppercase text-cyan-300 mb-5">
-          {{ language === 'en' ? 'About me' : 'Sobre mí' }}
-        </p>
-
-        <h2 class="text-4xl md:text-6xl font-black text-white leading-tight">
-          {{ language === 'en'
-            ? 'Building digital products with clean code and purpose.'
-            : 'Construyendo productos digitales con código limpio y propósito.' }}
-        </h2>
-
-        <p class="mt-7 text-lg text-slate-300 leading-relaxed">
-          {{ language === 'en'
-            ? 'I am a Software Engineering student focused on full stack development. I enjoy creating modern, scalable and useful web applications, combining attractive interfaces with solid backend logic.'
-            : 'Soy estudiante de Ingeniería de Software enfocado en el desarrollo full stack. Me gusta crear aplicaciones web modernas, escalables y útiles, combinando interfaces atractivas con una lógica backend sólida.' }}
-        </p>
-
-        <p class="mt-5 text-lg text-slate-400 leading-relaxed">
-          {{ language === 'en'
-            ? 'My main stack includes Angular, Spring Boot, PostgreSQL, Tailwind CSS and Git. I am currently improving my portfolio with projects that solve real problems and demonstrate both frontend and backend skills.'
-            : 'Mi stack principal incluye Angular, Spring Boot, PostgreSQL, Tailwind CSS y Git. Actualmente estoy fortaleciendo mi portafolio con proyectos que resuelven problemas reales y demuestran habilidades tanto frontend como backend.' }}
-        </p>
-      </div>
-
-      <!-- RIGHT CARDS -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-        <div class="about-card">
-          <span class="text-3xl">💻</span>
-          <h3 class="mt-5 text-xl font-bold text-white">
-            {{ language === 'en' ? 'Frontend' : 'Frontend' }}
-          </h3>
-          <p class="mt-3 text-slate-400">
-            Angular, Tailwind CSS, responsive interfaces and modern UI animations.
-          </p>
-        </div>
-
-        <div class="about-card">
-          <span class="text-3xl">⚙️</span>
-          <h3 class="mt-5 text-xl font-bold text-white">
-            Backend
-          </h3>
-          <p class="mt-3 text-slate-400">
-            Spring Boot, REST APIs, JWT authentication and PostgreSQL databases.
-          </p>
-        </div>
-
-        <div class="about-card">
-          <span class="text-3xl">🚀</span>
-          <h3 class="mt-5 text-xl font-bold text-white">
-            {{ language === 'en' ? 'Projects' : 'Proyectos' }}
-          </h3>
-          <p class="mt-3 text-slate-400">
-            Bookify, GPU Management, Full Stack Notes App and SaaS ideas.
-          </p>
-        </div>
-
-        <div class="about-card">
-          <span class="text-3xl">🧠</span>
-          <h3 class="mt-5 text-xl font-bold text-white">
-            {{ language === 'en' ? 'Learning' : 'Aprendizaje' }}
-          </h3>
-          <p class="mt-3 text-slate-400">
-            Software architecture, DevOps, cloud deployment and scalable systems.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
- <!-- PROJECTS -->
-<section
-  id="projects"
-  class="relative z-10 min-h-screen px-6 py-24"
->
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <p class="text-sm tracking-[0.35em] uppercase text-cyan-300 mb-5">
-        {{ language === 'en' ? 'Selected work' : 'Proyectos destacados' }}
-      </p>
-
-      <h2 class="text-4xl md:text-6xl font-black text-white">
-        {{ language === 'en' ? 'Projects' : 'Proyectos' }}
-      </h2>
-
-      <p class="mt-5 text-lg text-slate-400 max-w-2xl mx-auto">
-        {{ language === 'en'
-          ? 'A collection of projects focused on web development, backend logic and real-world software solutions.'
-          : 'Una colección de proyectos enfocados en desarrollo web, lógica backend y soluciones de software reales.' }}
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- BOOKIFY -->
-      <article class="project-card md:col-span-2">
-        <div class="flex flex-col lg:flex-row gap-8 items-center">
-          <div class="flex-1">
-            <span class="project-badge">SaaS / Full Stack</span>
-
-            <h3 class="mt-5 text-3xl md:text-4xl font-black text-white">
-              Bookify
-            </h3>
-
-            <p class="mt-4 text-slate-400 leading-relaxed">
-              {{ language === 'en'
-                ? 'A reservation management platform for service businesses, built with a modular architecture, authentication, service scheduling and booking logic.'
-                : 'Plataforma de gestión de reservas para negocios de servicios, construida con arquitectura modular, autenticación, horarios de atención y lógica de reservas.' }}
-            </p>
-
-            <div class="mt-6 flex flex-wrap gap-3">
-              <span class="tech-pill">Angular</span>
-              <span class="tech-pill">Spring Boot</span>
-              <span class="tech-pill">PostgreSQL</span>
-              <span class="tech-pill">JWT</span>
-            </div>
-          </div>
-
-          <div class="project-preview">
-            <div class="preview-bar">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="preview-content">
-              <div class="preview-line w-3/4"></div>
-              <div class="preview-line w-1/2"></div>
-              <div class="preview-box"></div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- GPU MANAGEMENT -->
-      <article class="project-card">
-        <span class="project-badge">Enterprise System</span>
-
-        <h3 class="mt-5 text-2xl font-black text-white">
-          GPU Management
-        </h3>
-
-        <p class="mt-4 text-slate-400 leading-relaxed">
-          {{ language === 'en'
-            ? 'System for managing GPU requests, availability and assignments in an enterprise environment.'
-            : 'Sistema para gestionar solicitudes, disponibilidad y asignación de GPUs en un entorno empresarial.' }}
-        </p>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <span class="tech-pill">Angular</span>
-          <span class="tech-pill">Spring Boot</span>
-          <span class="tech-pill">REST API</span>
-        </div>
-      </article>
-
-      <!-- NOTES APP -->
-      <article class="project-card">
-        <span class="project-badge">Full Stack App</span>
-
-        <h3 class="mt-5 text-2xl font-black text-white">
-          Notes App
-        </h3>
-
-        <p class="mt-4 text-slate-400 leading-relaxed">
-          {{ language === 'en'
-            ? 'Full stack notes application with authentication, categories, filtering, archive and note management.'
-            : 'Aplicación full stack de notas con autenticación, categorías, filtrado, archivado y gestión de notas.' }}
-        </p>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <span class="tech-pill">Angular</span>
-          <span class="tech-pill">JWT</span>
-          <span class="tech-pill">PostgreSQL</span>
-        </div>
-      </article>
-    </div>
+  <div id="site-menu" class="menu-panel" [class.is-open]="menuOpen" [attr.aria-hidden]="!menuOpen">
+    <nav aria-label="Principal">
+      <a href="#home" (click)="closeMenu()"><small>01</small>{{ language === 'es' ? 'Inicio' : 'Home' }}</a>
+      <a href="#about" (click)="closeMenu()"><small>02</small>{{ language === 'es' ? 'Sobre mí' : 'About' }}</a>
+      <a href="#projects" (click)="closeMenu()"><small>03</small>{{ language === 'es' ? 'Proyectos' : 'Projects' }}</a>
+      <a href="#contact" (click)="closeMenu()"><small>04</small>{{ language === 'es' ? 'Contacto' : 'Contact' }}</a>
+    </nav>
+    <p>{{ language === 'es' ? 'Disponible para prácticas, colaboraciones y proyectos con propósito.' : 'Available for internships, collaborations and purposeful projects.' }}</p>
   </div>
-</section>
 
-  <!-- CONTACT -->
-  <!-- CONTACT -->
-<section
-  id="contact"
-  class="relative z-10 min-h-screen flex items-center px-6 py-24"
->
-  <div class="max-w-5xl mx-auto text-center">
-    <p class="text-sm tracking-[0.35em] uppercase text-cyan-300 mb-6">
-      {{ language === 'en' ? 'Contact' : 'Contacto' }}
-    </p>
+  <div id="content">
+    <section id="home" class="hero">
+      <div class="hero-index" aria-hidden="true">PORTFOLIO / 26</div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span>{{ language === 'es' ? 'Ingeniería de software × producto' : 'Software engineering × product' }}</p>
+        <h1>Diseño sistemas<br />que <em>funcionan.</em></h1>
+        <p class="hero-intro">
+          {{ language === 'es'
+            ? 'Soy Diego Huincho, desarrollador full stack. Convierto problemas reales en productos web claros, rápidos y mantenibles.'
+            : 'I’m Diego Huincho, a full stack developer. I turn real problems into clear, fast and maintainable web products.' }}
+        </p>
+        <div class="hero-links">
+          <a class="primary-link" href="#projects">{{ language === 'es' ? 'Explorar trabajo' : 'Explore work' }} <span>↘</span></a>
+          <a href="mailto:huinchodiego@gmail.com">huinchodiego&#64;gmail.com</a>
+        </div>
+      </div>
 
-    <h2 class="text-5xl md:text-7xl font-black text-white leading-tight">
-      {{ language === 'en'
-        ? "Let's build something together."
-        : 'Construyamos algo juntos.' }}
-    </h2>
+      <div class="hero-object" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="core">DH<span>01</span></div>
+        <p>FRONTEND / BACKEND<br />IDEA → SYSTEM</p>
+      </div>
 
-    <p class="mt-8 text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto">
-      {{ language === 'en'
-        ? 'I am open to collaborations, freelance projects and new opportunities related to software development and digital products.'
-        : 'Estoy abierto a colaboraciones, proyectos freelance y nuevas oportunidades relacionadas al desarrollo de software y productos digitales.' }}
-    </p>
+      <div class="hero-status"><span></span>{{ language === 'es' ? 'Disponible para crear' : 'Available to build' }}</div>
+    </section>
 
-    <!-- BUTTON -->
-    <div class="mt-12">
-      <a
-        href="mailto:huinchodiego@gmail.com"
-        class="contact-button"
-      >
-        → {{ language === 'en' ? 'Send me an email' : 'Envíame un correo' }}
-      </a>
-    </div>
+    <section id="about" class="about section-shell">
+      <header class="section-heading">
+        <p>02 / {{ language === 'es' ? 'Perfil' : 'Profile' }}</p>
+        <h2>{{ language === 'es' ? 'Código con criterio.' : 'Code with judgment.' }}</h2>
+      </header>
 
-    <!-- LINKS -->
-    <div class="mt-16 flex flex-wrap justify-center gap-5">
-      <a
-        href="https://github.com/DiegoHLZ"
-        target="_blank"
-        class="contact-link"
-      >
-        GitHub
-      </a>
+      <div class="about-grid">
+        <p class="about-lead">
+          {{ language === 'es'
+            ? 'No me interesa sumar tecnología por moda. Me interesa entender el problema, reducir la complejidad y construir una experiencia que se sienta inevitable.'
+            : 'I am not interested in adding technology for the sake of trends. I want to understand the problem, reduce complexity and build an experience that feels inevitable.' }}
+        </p>
+        <div class="about-detail">
+          <p>{{ language === 'es'
+            ? 'Estudio Ingeniería de Software y trabajo de extremo a extremo: desde la interfaz y sus microinteracciones hasta APIs, autenticación y datos.'
+            : 'I study Software Engineering and work end to end: from interfaces and micro-interactions to APIs, authentication and data.' }}</p>
+          <a href="#contact">{{ language === 'es' ? 'Hablemos de una idea' : 'Let’s talk about an idea' }} ↗</a>
+        </div>
+      </div>
 
-      <a
-        href="https://www.linkedin.com/in/diego-huincho-b4619028b/"
-        target="_blank"
-        class="contact-link"
-      >
-        LinkedIn
-      </a>
+      <div class="capabilities" aria-label="Áreas de trabajo">
+        <article><small>01</small><h3>Interface</h3><p>Angular · TypeScript<br />Responsive UI · Motion</p></article>
+        <article><small>02</small><h3>Systems</h3><p>Spring Boot · REST<br />JWT · PostgreSQL</p></article>
+        <article><small>03</small><h3>Practice</h3><p>Git · Architecture<br />Testing · Deployment</p></article>
+      </div>
+    </section>
 
-      <a
-        href="mailto:huinchodiego@gmail.com"
-        class="contact-link"
-      >
-        Email
-      </a>
-    </div>
+    <section id="projects" class="projects section-shell">
+      <header class="section-heading project-heading">
+        <p>03 / {{ language === 'es' ? 'Trabajo seleccionado' : 'Selected work' }}</p>
+        <h2>{{ language === 'es' ? 'Casos, no tarjetas.' : 'Cases, not cards.' }}</h2>
+      </header>
 
-    <!-- FOOTER -->
-    <div class="mt-24 text-sm text-slate-500">
-      © 2026 Diego Huincho — Full Stack Developer
-    </div>
+      <article class="case case-featured">
+        <div class="case-meta"><span>01</span><p>SAAS / FULL STACK<br />EN DESARROLLO</p></div>
+        <div class="case-body">
+          <h3>Bookify</h3>
+          <p>{{ language === 'es'
+            ? 'Una plataforma de reservas para negocios de servicios. Arquitectura modular, autenticación y lógica de disponibilidad que convierte una agenda compleja en un flujo simple.'
+            : 'A booking platform for service businesses. Modular architecture, authentication and availability logic that turns a complex schedule into a simple flow.' }}</p>
+          <ul><li>Angular</li><li>Spring Boot</li><li>PostgreSQL</li><li>JWT</li></ul>
+        </div>
+        <div class="case-visual bookify-visual" aria-hidden="true">
+          <div class="calendar"><b>BOOK / 08:30</b><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span>RESERVA<br />CONFIRMADA</span>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta"><span>02</span><p>ENTERPRISE<br />MANAGEMENT</p></div>
+        <div class="case-body">
+          <h3>GPU<br />Management</h3>
+          <p>{{ language === 'es'
+            ? 'Sistema para organizar solicitudes, disponibilidad y asignaciones de GPUs en un entorno empresarial.'
+            : 'A system for organizing GPU requests, availability and assignments in an enterprise environment.' }}</p>
+          <ul><li>Angular</li><li>Spring Boot</li><li>REST API</li></ul>
+        </div>
+        <div class="case-mark" aria-hidden="true">GPU<span>↗</span></div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta"><span>03</span><p>PRODUCTIVITY<br />FULL STACK</p></div>
+        <div class="case-body">
+          <h3>Notes<br />App</h3>
+          <p>{{ language === 'es'
+            ? 'Notas con autenticación, categorías, filtros y archivo: información accesible sin ruido.'
+            : 'Notes with authentication, categories, filters and archiving: information available without noise.' }}</p>
+          <ul><li>Angular</li><li>JWT</li><li>PostgreSQL</li></ul>
+        </div>
+        <div class="case-mark notes-mark" aria-hidden="true">N<span>03</span></div>
+      </article>
+    </section>
+
+    <section id="contact" class="contact">
+      <p class="eyebrow"><span></span>04 / {{ language === 'es' ? 'Contacto' : 'Contact' }}</p>
+      <h2>{{ language === 'es' ? '¿Qué podemos construir?' : 'What can we build?' }}</h2>
+      <a class="contact-mail" href="mailto:huinchodiego@gmail.com">huinchodiego&#64;gmail.com <span>↗</span></a>
+      <footer>
+        <p>© {{ currentYear }} DIEGO HUINCHO</p>
+        <div><a href="https://github.com/DiegoHLZ" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/diego-huincho-b4619028b/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+        <p>LIMA, PERÚ — 12°S</p>
+      </footer>
+    </section>
   </div>
-</section>
 </main>

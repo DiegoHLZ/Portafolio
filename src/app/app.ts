@@ -1,125 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgxParticlesModule, NgParticlesService } from '@tsparticles/angular';
-import { loadSlim } from '@tsparticles/slim';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, HostListener, inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, NgxParticlesModule],
+  imports: [CommonModule],
   templateUrl: './app.html',
 })
-export class App implements OnInit {
-  language: 'en' | 'es' = 'en';
+export class App {
+  private readonly document = inject(DOCUMENT);
 
-  mouseX = 0;
-  mouseY = 0;
-
+  language: 'en' | 'es' = 'es';
   menuOpen = false;
+  mouseX = -100;
+  mouseY = -100;
+  currentYear = new Date().getFullYear();
 
-  id = 'tsparticles';
-
-  isSafari =
-    /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ||
-    navigator.vendor.includes('Apple');
-
-  constructor(private readonly ngParticlesService: NgParticlesService) {}
-
-  ngOnInit(): void {
-    if (!this.isSafari) {
-      setTimeout(() => {
-        this.ngParticlesService.init(async (engine) => {
-          await loadSlim(engine);
-        });
-      }, 500);
-    }
-  }
-
-  particlesOptions: any = this.isSafari
-    ? {
-        background: { color: { value: 'transparent' } },
-        fpsLimit: 18,
-        particles: {
-          number: {
-            value: 18,
-            density: { enable: true, area: 1200 },
-          },
-          color: { value: ['#38bdf8', '#8b5cf6'] },
-          links: {
-            enable: true,
-            distance: 110,
-            color: '#38bdf8',
-            opacity: 0.12,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 0.18,
-            outModes: { default: 'bounce' },
-          },
-          opacity: { value: 0.22 },
-          size: { value: { min: 1, max: 2 } },
-        },
-        interactivity: {
-          events: {
-            onHover: { enable: false },
-            resize: true,
-          },
-        },
-        detectRetina: false,
-      }
-    : {
-        background: { color: { value: 'transparent' } },
-        fpsLimit: 60,
-        particles: {
-          number: {
-            value: 105,
-            density: { enable: true, area: 900 },
-          },
-          color: { value: ['#38bdf8', '#8b5cf6', '#06b6d4'] },
-          links: {
-            enable: true,
-            distance: 160,
-            color: '#38bdf8',
-            opacity: 0.22,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 0.45,
-            outModes: { default: 'bounce' },
-          },
-          opacity: { value: 0.45 },
-          size: { value: { min: 1, max: 2.5 } },
-        },
-        interactivity: {
-          events: {
-            onHover: { enable: true, mode: 'grab' },
-            resize: true,
-          },
-          modes: {
-            grab: {
-              distance: 140,
-              links: { opacity: 0.5 },
-            },
-          },
-        },
-        detectRetina: false,
-      };
-
-  toggleLanguage() {
+  toggleLanguage(): void {
     this.language = this.language === 'en' ? 'es' : 'en';
+    this.document.documentElement.lang = this.language;
   }
 
-  onMouseMove(event: MouseEvent) {
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+    this.document.body.classList.toggle('menu-is-open', this.menuOpen);
+  }
+
+  closeMenu(): void {
+    this.menuOpen = false;
+    this.document.body.classList.remove('menu-is-open');
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeMenu();
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent): void {
     this.mouseX = event.clientX;
     this.mouseY = event.clientY;
-  }
-
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  closeMenu() {
-    this.menuOpen = false;
   }
 }
