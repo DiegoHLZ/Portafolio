@@ -1,20 +1,14 @@
 <main>
   <a class="skip-link" href="#content">{{ language === 'es' ? 'Saltar al contenido' : 'Skip to content' }}</a>
 
-  <div class="cursor" aria-hidden="true" [style.left.px]="mouseX" [style.top.px]="mouseY"></div>
-
-  <header class="site-header">
+  <header class="site-header" [class.is-scrolled]="scrolled" [class.menu-active]="menuOpen">
     <a class="wordmark" href="#home" aria-label="Diego Huincho — inicio">
       <span>DH</span><small>FULL STACK<br />LIMA, PE</small>
     </a>
-
     <div class="header-actions">
-      <button class="language" type="button" (click)="toggleLanguage()" [attr.aria-label]="language === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'">
-        {{ language === 'es' ? 'EN' : 'ES' }}
-      </button>
+      <button class="language" type="button" (click)="toggleLanguage()" [attr.aria-label]="language === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish'">{{ language === 'es' ? 'EN' : 'ES' }}</button>
       <button class="menu-trigger" type="button" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen" aria-controls="site-menu">
-        <span>{{ menuOpen ? (language === 'es' ? 'Cerrar' : 'Close') : 'Menu' }}</span>
-        <i aria-hidden="true"></i>
+        <span>{{ menuOpen ? (language === 'es' ? 'Cerrar' : 'Close') : 'Menu' }}</span><i aria-hidden="true"></i>
       </button>
     </div>
   </header>
@@ -24,10 +18,11 @@
       <a href="#home" (click)="closeMenu()"><small>01</small>{{ language === 'es' ? 'Inicio' : 'Home' }}</a>
       <a href="#about" (click)="closeMenu()"><small>02</small>{{ language === 'es' ? 'Sobre mí' : 'About' }}</a>
       <a href="#projects" (click)="closeMenu()"><small>03</small>{{ language === 'es' ? 'Proyectos' : 'Projects' }}</a>
-      <a href="#design" (click)="closeMenu()"><small>04</small>{{ language === 'es' ? 'Mockups' : 'Mockups' }}</a>
-      <a href="#contact" (click)="closeMenu()"><small>05</small>{{ language === 'es' ? 'Contacto' : 'Contact' }}</a>
+      <a href="#process" (click)="closeMenu()"><small>04</small>{{ language === 'es' ? 'Proceso' : 'Process' }}</a>
+      <a href="#personal" (click)="closeMenu()"><small>05</small>{{ language === 'es' ? 'Personal' : 'Personal' }}</a>
+      <a href="#contact" (click)="closeMenu()"><small>06</small>{{ language === 'es' ? 'Contacto' : 'Contact' }}</a>
     </nav>
-    <p>{{ language === 'es' ? 'Disponible para prácticas, colaboraciones y proyectos con propósito.' : 'Available for internships, collaborations and purposeful projects.' }}</p>
+    <p>{{ language === 'es' ? 'Disponible para oportunidades profesionales y proyectos web con propósito.' : 'Available for professional opportunities and purposeful web projects.' }}</p>
   </div>
 
   <div id="content">
@@ -35,25 +30,20 @@
       <div class="hero-index" aria-hidden="true">PORTFOLIO / 26</div>
       <div class="hero-copy">
         <p class="eyebrow"><span></span>{{ language === 'es' ? 'Ingeniería de software × producto' : 'Software engineering × product' }}</p>
-        <h1>Diseño sistemas<br />que <em>funcionan.</em></h1>
-        <p class="hero-intro">
-          {{ language === 'es'
-            ? 'Soy Diego Huincho, desarrollador full stack. Convierto problemas reales en productos web claros, rápidos y mantenibles.'
-            : 'I’m Diego Huincho, a full stack developer. I turn real problems into clear, fast and maintainable web products.' }}
-        </p>
+        <h1>{{ language === 'es' ? 'Construyo productos' : 'I build products' }}<br /><em>{{ language === 'es' ? 'que generan confianza.' : 'people can trust.' }}</em></h1>
+        <p class="hero-intro">{{ language === 'es'
+          ? 'Soy Diego Huincho, desarrollador full stack. Ayudo a equipos y negocios a convertir ideas en experiencias web claras, útiles y bien construidas.'
+          : 'I’m Diego Huincho, a full stack developer. I help teams and businesses turn ideas into clear, useful and well-built web experiences.' }}</p>
         <div class="hero-links">
-          <a class="primary-link" href="#projects">{{ language === 'es' ? 'Explorar trabajo' : 'Explore work' }} <span>↘</span></a>
-          <a href="mailto:huinchodiego@gmail.com">huinchodiego&#64;gmail.com</a>
+          <a class="primary-link" href="#projects">{{ language === 'es' ? 'Ver proyectos' : 'View projects' }} <span>↘</span></a>
+          <a class="text-link" href="https://wa.me/51958075248?text=Hola%20Diego%2C%20vi%20tu%20portafolio%20y%20quisiera%20conversar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
         </div>
       </div>
-
-      <div class="hero-object" aria-hidden="true">
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-        <div class="core">DH<span>01</span></div>
-        <p>FRONTEND / BACKEND<br />IDEA → SYSTEM</p>
-      </div>
-
+      <figure class="hero-portrait">
+        <div class="portrait-frame"><img src="profile/diego-huincho.jpeg" alt="Diego Huincho durante un encuentro académico de ingeniería" /></div>
+        <figcaption><span>DIEGO HUINCHO</span><span>LIMA, PERÚ</span></figcaption>
+        <p>SOFTWARE + PRODUCT<br />IDEA → ENTREGA</p>
+      </figure>
       <div class="hero-status"><span></span>{{ language === 'es' ? 'Disponible para crear' : 'Available to build' }}</div>
     </section>
 
@@ -62,177 +52,124 @@
         <p>02 / {{ language === 'es' ? 'Perfil' : 'Profile' }}</p>
         <h2>{{ language === 'es' ? 'Código con criterio.' : 'Code with judgment.' }}</h2>
       </header>
-
       <div class="about-grid">
-        <p class="about-lead">
-          {{ language === 'es'
-            ? 'No me interesa sumar tecnología por moda. Me interesa entender el problema, reducir la complejidad y construir una experiencia que se sienta inevitable.'
-            : 'I am not interested in adding technology for the sake of trends. I want to understand the problem, reduce complexity and build an experience that feels inevitable.' }}
-        </p>
+        <p class="about-lead">{{ language === 'es'
+          ? 'Entiendo el problema antes de elegir la tecnología. Así construyo soluciones que se ven bien, funcionan bien y tienen sentido para quien las usa.'
+          : 'I understand the problem before choosing the technology. That is how I build solutions that look good, work well and make sense to the people using them.' }}</p>
         <div class="about-detail">
           <p>{{ language === 'es'
-            ? 'Estudio Ingeniería de Software y trabajo de extremo a extremo: desde la interfaz y sus microinteracciones hasta APIs, autenticación y datos.'
-            : 'I study Software Engineering and work end to end: from interfaces and micro-interactions to APIs, authentication and data.' }}</p>
-          <a href="#contact">{{ language === 'es' ? 'Hablemos de una idea' : 'Let’s talk about an idea' }} ↗</a>
+            ? 'Estudio Ingeniería de Software y trabajo de extremo a extremo: experiencia de usuario, frontend, APIs, autenticación, datos y publicación. Puedo aportar dentro de un equipo de producto o acompañar a un negocio que necesita una presencia digital más profesional.'
+            : 'I study Software Engineering and work end to end: user experience, frontend, APIs, authentication, data and deployment. I can contribute within a product team or help a business build a more professional digital presence.' }}</p>
+          <a href="#contact">{{ language === 'es' ? 'Conversemos' : 'Let’s talk' }} ↗</a>
         </div>
       </div>
-
-      <div class="capabilities" aria-label="Áreas de trabajo">
-        <article><small>01</small><h3>Interface</h3><p>Angular · TypeScript<br />Responsive UI · Motion</p></article>
-        <article><small>02</small><h3>Systems</h3><p>Spring Boot · REST<br />JWT · PostgreSQL</p></article>
-        <article><small>03</small><h3>Practice</h3><p>Git · Architecture<br />Testing · Deployment</p></article>
+      <div class="capability-list" aria-label="Áreas de trabajo">
+        <article><small>01</small><h3>Producto &amp; interfaz</h3><p>Flujos · Figma · Angular · TypeScript · Responsive UI</p></article>
+        <article><small>02</small><h3>Desarrollo end-to-end</h3><p>Spring Boot · REST · JWT · PostgreSQL</p></article>
+        <article><small>03</small><h3>Entrega responsable</h3><p>Git · Arquitectura · Testing · Deployment</p></article>
       </div>
     </section>
 
     <section id="projects" class="projects section-shell">
       <header class="section-heading project-heading">
         <p>03 / {{ language === 'es' ? 'Trabajo seleccionado' : 'Selected work' }}</p>
-        <h2>{{ language === 'es' ? 'Productos seleccionados.' : 'Selected products.' }}</h2>
+        <h2>{{ language === 'es' ? 'Productos con contexto.' : 'Products with context.' }}</h2>
       </header>
 
-      <article class="case case-featured">
-        <div class="case-meta"><span>01</span><p>SAAS / FULL STACK<br />EN DESARROLLO</p></div>
-        <div class="case-body">
-          <h3>Bookify</h3>
-          <p>{{ language === 'es'
-            ? 'Una plataforma de reservas para negocios de servicios. Arquitectura modular, autenticación y lógica de disponibilidad que convierte una agenda compleja en un flujo simple.'
-            : 'A booking platform for service businesses. Modular architecture, authentication and availability logic that turns a complex schedule into a simple flow.' }}</p>
-          <ul><li>Angular</li><li>Spring Boot</li><li>PostgreSQL</li><li>JWT</li></ul>
-          <div class="case-actions">
-            <a href="https://github.com/DiegoHLZ/bookify" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-            <span class="backend-note">API REST · Spring Security · Java 17</span>
-          </div>
-        </div>
-        <figure class="case-media bookify-media">
-          <img src="projects/bookify-concept.webp" alt="Composición conceptual sobre reservas, horarios y disponibilidad para Bookify" loading="lazy" />
-        </figure>
-      </article>
-
       <article class="case">
-        <div class="case-meta"><span>02</span><p>ENTERPRISE<br />MANAGEMENT</p></div>
+        <div class="case-meta"><span>01</span><p>COMMERCE<br />PUBLICADO</p></div>
         <div class="case-body">
-          <h3>GPU<br />Management</h3>
+          <p class="case-kicker">WEB PARA NEGOCIO LOCAL</p><h3>Maja<br />Calzados</h3>
           <p>{{ language === 'es'
-            ? 'Sistema para organizar solicitudes, disponibilidad y asignaciones de GPUs en un entorno empresarial.'
-            : 'A system for organizing GPU requests, availability and assignments in an enterprise environment.' }}</p>
-          <ul><li>Angular</li><li>Spring Boot</li><li>REST API</li></ul>
-          <div class="case-actions">
-            <a href="https://github.com/DiegoHLZ/sistema-gestion-gpus" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-            <span class="backend-note">JWT · OpenAPI · PostgreSQL</span>
-          </div>
-        </div>
-        <div class="case-visual gpu-visual" aria-hidden="true">
-          <header><b>GPU / CONTROL</b><i>LIVE</i></header>
-          <div class="gpu-stats"><span><small>AVAILABLE</small>08</span><span><small>ASSIGNED</small>14</span></div>
-          <div class="gpu-row"><i></i><b>RTX 4090</b><small>ONLINE</small></div>
-          <div class="gpu-row"><i></i><b>A100 80GB</b><small>IN USE</small></div>
-          <div class="gpu-modules">REQUESTS · ASSIGNMENTS · PAYMENTS · REPORTS</div>
-        </div>
-      </article>
-
-      <article class="case">
-        <div class="case-meta"><span>03</span><p>OPERATIONS<br />DASHBOARD</p></div>
-        <div class="case-body">
-          <h3>Printer<br />Center</h3>
-          <p>{{ language === 'es'
-            ? 'Dashboard operativo para monitorear impresoras, consultar su disponibilidad y centralizar la información técnica consumida desde una API.'
-            : 'An operations dashboard to monitor printers, check availability and centralize technical information consumed from an API.' }}</p>
-          <ul><li>React 19</li><li>TypeScript</li><li>Material UI</li><li>Axios</li></ul>
-          <div class="case-actions">
-            <a href="https://github.com/DiegoHLZ/proservv-printer-center" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-            <span class="backend-note">REST integration · Typed services</span>
-          </div>
-        </div>
-        <div class="case-visual printer-visual" aria-hidden="true">
-          <div class="printer-sidebar"><b>P</b><i></i><i></i><i></i></div>
-          <div class="printer-board">
-            <header><small>PRINTER CENTER</small><b>Dashboard</b></header>
-            <div class="printer-kpis"><span><small>TOTAL</small>12</span><span><small>ONLINE</small>09</span><span><small>OFFLINE</small>03</span></div>
-            <div class="printer-table"><i></i><i></i><i></i><i></i></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="case">
-        <div class="case-meta"><span>04</span><p>COMMERCE<br />EXPERIENCE</p></div>
-        <div class="case-body">
-          <h3>Maja<br />Calzados</h3>
-          <p>{{ language === 'es'
-            ? 'Sitio editorial para una tienda física de calzado. El catálogo organiza las colecciones por público y convierte el interés en consultas directas por WhatsApp.'
-            : 'An editorial website for a physical footwear store. The catalog organizes collections by audience and turns interest into direct WhatsApp inquiries.' }}</p>
+            ? 'Sitio editorial para una tienda física de calzado. Organicé su oferta por públicos y conecté cada punto de interés con una consulta directa por WhatsApp.'
+            : 'An editorial website for a physical footwear store. I organized its offering by audience and connected every point of interest to a direct WhatsApp inquiry.' }}</p>
           <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive</li></ul>
           <div class="case-actions">
             <a href="https://diegohlz.github.io/maja-calzados/" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Ver sitio' : 'View site' }} <span>↗</span></a>
-            <a href="https://github.com/DiegoHLZ/maja-calzados" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-            <span class="backend-note">Catálogo web · Conversión por WhatsApp</span>
+            <a class="secondary-action" href="https://github.com/DiegoHLZ/maja-calzados" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
           </div>
         </div>
-        <figure class="case-media">
-          <img src="projects/maja-calzados.webp" alt="Campaña editorial de calzado femenino creada para el sitio de Maja Calzados" loading="lazy" />
-        </figure>
+        <figure class="case-media"><img src="projects/maja-calzados.webp" alt="Campaña editorial de calzado femenino creada para el sitio de Maja Calzados" loading="lazy" /><figcaption>01 / IDENTIDAD · CATÁLOGO · CONVERSIÓN</figcaption></figure>
+      </article>
+
+      <article class="case">
+        <div class="case-meta"><span>02</span><p>SAAS / FULL STACK<br />EN DESARROLLO</p></div>
+        <div class="case-body">
+          <p class="case-kicker">PRODUCTO DE RESERVAS</p><h3>Bookify</h3>
+          <p>{{ language === 'es'
+            ? 'Plataforma de reservas para negocios de servicios. El reto es convertir disponibilidad, horarios y autenticación en un recorrido simple para clientes y administradores.'
+            : 'A booking platform for service businesses. The challenge is turning availability, schedules and authentication into a simple journey for customers and administrators.' }}</p>
+          <ul><li>Angular</li><li>Spring Boot</li><li>PostgreSQL</li><li>JWT</li></ul>
+          <div class="case-actions"><a href="https://github.com/DiegoHLZ/bookify" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><span class="backend-note">Arquitectura modular · Java 17</span></div>
+        </div>
+        <figure class="case-media bookify-media"><img src="projects/bookify-concept.webp" alt="Composición conceptual sobre reservas, horarios y disponibilidad para Bookify" loading="lazy" /><figcaption>02 / RESERVAS · DISPONIBILIDAD · AUTENTICACIÓN</figcaption></figure>
+      </article>
+
+      <article class="case">
+        <div class="case-meta"><span>03</span><p>ENTERPRISE<br />FULL STACK</p></div>
+        <div class="case-body">
+          <p class="case-kicker">GESTIÓN OPERATIVA</p><h3>GPU<br />Management</h3>
+          <p>{{ language === 'es'
+            ? 'Sistema administrativo para centralizar GPUs, solicitudes, asignaciones, reportes y pagos. La interfaz resume el estado de la operación y da acceso rápido a cada módulo.'
+            : 'An administrative system that centralizes GPUs, requests, assignments, reports and payments. The interface summarizes operations and provides quick access to every module.' }}</p>
+          <ul><li>Angular</li><li>Spring Boot</li><li>REST API</li><li>PostgreSQL</li></ul>
+          <div class="case-actions"><a href="https://github.com/DiegoHLZ/sistema-gestion-gpus" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><span class="backend-note">JWT · OpenAPI · Dashboard</span></div>
+        </div>
+        <figure class="case-media interface-media"><img src="projects/gpu-management.png" alt="Dashboard administrativo real de GPU Management" loading="lazy" /><figcaption>03 / DASHBOARD · MÓDULOS · MONITOREO</figcaption></figure>
       </article>
     </section>
 
-    <section id="design" class="design-section">
-      <header class="design-heading">
+    <section id="process" class="process-section">
+      <header class="process-heading">
         <p>04 / PRODUCT THINKING</p>
-        <h2>{{ language === 'es' ? 'Antes del código, diseño el recorrido.' : 'Before the code, I design the journey.' }}</h2>
+        <h2>{{ language === 'es' ? 'Del problema a una experiencia clara.' : 'From the problem to a clear experience.' }}</h2>
         <p>{{ language === 'es'
-          ? 'Exploraciones de interfaz, sistemas visuales y prototipos creados en Figma para convertir ideas en experiencias comprensibles.'
-          : 'Interface explorations, visual systems and Figma prototypes that turn ideas into understandable experiences.' }}</p>
+          ? 'Uso diseño y prototipos para reducir dudas antes de desarrollar. El objetivo no es producir más pantallas, sino tomar mejores decisiones.'
+          : 'I use design and prototypes to reduce uncertainty before development. The goal is not to produce more screens, but to make better decisions.' }}</p>
       </header>
+      <figure class="process-cover"><img src="projects/design-process.webp" alt="Composición editorial del proceso de diseño con wireframes, flujos y sistemas visuales" loading="lazy" /><figcaption>{{ language === 'es' ? 'Del flujo al sistema visual' : 'From flow to visual system' }} / FIGMA</figcaption></figure>
+      <div class="process-steps" aria-label="Proceso de trabajo">
+        <article><small>01</small><h3>{{ language === 'es' ? 'Entender' : 'Understand' }}</h3><p>{{ language === 'es' ? 'Objetivo, usuarios y restricciones.' : 'Goal, users and constraints.' }}</p></article>
+        <article><small>02</small><h3>{{ language === 'es' ? 'Diseñar' : 'Design' }}</h3><p>{{ language === 'es' ? 'Flujos, jerarquía y prototipo.' : 'Flows, hierarchy and prototype.' }}</p></article>
+        <article><small>03</small><h3>{{ language === 'es' ? 'Construir' : 'Build' }}</h3><p>{{ language === 'es' ? 'Interfaz, lógica e integración.' : 'Interface, logic and integration.' }}</p></article>
+        <article><small>04</small><h3>{{ language === 'es' ? 'Validar' : 'Validate' }}</h3><p>{{ language === 'es' ? 'Pruebas, ajustes y publicación.' : 'Testing, refinement and deployment.' }}</p></article>
+      </div>
+      <div class="process-actions">
+        <p>{{ language === 'es' ? 'Un ejemplo navegable de cómo traduzco una idea en decisiones de interfaz.' : 'A navigable example of how I turn an idea into interface decisions.' }}</p>
+        <div>
+          <a href="https://www.figma.com/design/qJEigIskgVceMG5MaWfpe5/Mockups?node-id=0-1&t=JOj0jINrYln1MmAb-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Ver diseño' : 'View design' }} ↗</a>
+          <a href="https://www.figma.com/proto/qJEigIskgVceMG5MaWfpe5/Mockups?node-id=111-1637&starting-point-node-id=111%3A1637&t=15PFyDU2j9W3SZeO-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Abrir prototipo' : 'Open prototype' }} ▶</a>
+        </div>
+      </div>
+    </section>
 
-      <figure class="design-process-cover">
-        <img src="projects/design-process.webp" alt="Composición editorial del proceso de diseño con wireframes, flujos y sistemas visuales" loading="lazy" />
-        <figcaption>{{ language === 'es' ? 'Del flujo al sistema visual' : 'From flow to visual system' }} / FIGMA</figcaption>
-      </figure>
-
-      <div class="design-board">
-        <article class="design-piece piece-mockups">
-          <div class="piece-copy">
-            <span>01 / INTERACTIVE FLOW</span>
-            <h3>Mockups</h3>
-            <p>{{ language === 'es' ? 'Archivo de diseño + recorrido navegable.' : 'Design file + navigable flow.' }}</p>
-            <div class="piece-links">
-              <a href="https://www.figma.com/design/qJEigIskgVceMG5MaWfpe5/Mockups?node-id=0-1&t=JOj0jINrYln1MmAb-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Ver diseño' : 'View design' }} ↗</a>
-              <a href="https://www.figma.com/proto/qJEigIskgVceMG5MaWfpe5/Mockups?node-id=111-1637&starting-point-node-id=111%3A1637&t=15PFyDU2j9W3SZeO-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Abrir prototipo' : 'Open prototype' }} ▶</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="design-piece piece-comerxia">
-          <div class="piece-copy">
-            <span>02 / PRODUCT DESIGN</span>
-            <h3>Comerxia</h3>
-            <p>{{ language === 'es' ? 'Sistema de pantallas y decisiones de interfaz.' : 'A screen system and interface decisions.' }}</p>
-            <a href="https://www.figma.com/design/alRMtOUiPNYMBJuHz5mxLC/Comerxia?node-id=0-1&t=6TTafBisCieS9RTH-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Explorar archivo' : 'Explore file' }} ↗</a>
-          </div>
-        </article>
-
-        <article class="design-piece piece-food">
-          <div class="piece-copy">
-            <span>03 / UX · UI</span>
-            <h3>UniComida</h3>
-            <p>{{ language === 'es' ? 'Concepto de producto y experiencia visual.' : 'Product concept and visual experience.' }}</p>
-            <a href="https://www.figma.com/design/5yYLZdLCKRSypMOFUUKoLH/UniComida?t=6TTafBisCieS9RTH-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Explorar archivo' : 'Explore file' }} ↗</a>
-          </div>
-        </article>
-
-        <article class="design-piece piece-exploration">
-          <div class="piece-copy">
-            <span>04 / VISUAL STUDY</span>
-            <h3>UI<br />Exploration</h3>
-            <p>{{ language === 'es' ? 'Estudio visual y exploración de interfaz.' : 'Visual study and interface exploration.' }}</p>
-            <a href="https://www.figma.com/design/4rr6aJnpDfuM3eIRhE9jI4/Untitled?node-id=0-1&t=SSj63ySfrtMoBzda-1" target="_blank" rel="noopener noreferrer">{{ language === 'es' ? 'Explorar archivo' : 'Explore file' }} ↗</a>
-          </div>
-        </article>
+    <section id="personal" class="personal section-shell">
+      <header class="section-heading">
+        <p>05 / {{ language === 'es' ? 'Fuera del código' : 'Beyond code' }}</p>
+        <h2>{{ language === 'es' ? 'También soy la persona detrás del producto.' : 'I’m also the person behind the product.' }}</h2>
+      </header>
+      <div class="personal-grid">
+        <p>{{ language === 'es'
+          ? 'Me gusta viajar, conocer nuevas perspectivas y aprender en comunidad. Esas experiencias alimentan mi curiosidad y la forma en que colaboro: escuchando, haciendo preguntas y convirtiendo lo complejo en algo más cercano.'
+          : 'I enjoy traveling, discovering new perspectives and learning with others. Those experiences shape my curiosity and the way I collaborate: listening, asking questions and making complex things feel more approachable.' }}</p>
+        <div class="personal-notes">
+          <article><small>01</small><h3>{{ language === 'es' ? 'Viajar y observar' : 'Travel and observe' }}</h3></article>
+          <article><small>02</small><h3>{{ language === 'es' ? 'Aprender en comunidad' : 'Learn with others' }}</h3></article>
+          <article><small>03</small><h3>{{ language === 'es' ? 'Explorar diseño y tecnología' : 'Explore design and technology' }}</h3></article>
+        </div>
       </div>
     </section>
 
     <section id="contact" class="contact">
-      <p class="eyebrow"><span></span>05 / {{ language === 'es' ? 'Contacto' : 'Contact' }}</p>
-      <h2>{{ language === 'es' ? '¿Qué podemos construir?' : 'What can we build?' }}</h2>
-      <a class="contact-mail" href="mailto:huinchodiego@gmail.com">huinchodiego&#64;gmail.com <span>↗</span></a>
+      <p class="eyebrow"><span></span>06 / {{ language === 'es' ? 'Contacto' : 'Contact' }}</p>
+      <h2>{{ language === 'es' ? 'Hagamos algo que inspire confianza.' : 'Let’s build something people can trust.' }}</h2>
+      <p class="contact-intro">{{ language === 'es'
+        ? 'Si buscas sumar un desarrollador a tu equipo o darle a tu negocio una mejor presencia digital, conversemos.'
+        : 'If you are looking for a developer to join your team or want a stronger digital presence for your business, let’s talk.' }}</p>
+      <div class="contact-actions">
+        <a class="contact-primary" href="https://wa.me/51958075248?text=Hola%20Diego%2C%20vi%20tu%20portafolio%20y%20quisiera%20conversar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer">WhatsApp <span>↗</span></a>
+        <a href="mailto:huinchodiego@gmail.com">huinchodiego&#64;gmail.com <span>↗</span></a>
+      </div>
       <footer>
         <p>© {{ currentYear }} DIEGO HUINCHO</p>
         <div><a href="https://github.com/DiegoHLZ" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/diego-huincho-b4619028b/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>

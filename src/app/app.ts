@@ -11,8 +11,7 @@ export class App {
 
   language: 'en' | 'es' = 'es';
   menuOpen = false;
-  mouseX = -100;
-  mouseY = -100;
+  scrolled = false;
   currentYear = new Date().getFullYear();
 
   toggleLanguage(): void {
@@ -35,9 +34,8 @@ export class App {
     this.closeMenu();
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    this.mouseX = event.clientX;
-    this.mouseY = event.clientY;
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.scrolled = (this.document.defaultView?.scrollY ?? 0) > 24;
   }
 }
