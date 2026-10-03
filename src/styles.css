@@ -75,11 +75,11 @@ button { color: inherit; font: inherit; }
 .primary-link span { color: var(--acid); font-size: 1.3rem; }
 .primary-link:hover { background: var(--blue); transform: translateY(-3px); }
 .text-link { border-bottom: 1px solid var(--ink); padding-bottom: .35rem; }
-.hero-portrait { position: relative; z-index: 1; width: min(30vw, 410px); margin: 0 1.5rem 0 0; justify-self: end; transform: rotate(1.5deg); }
-.hero-portrait::before { content: ''; position: absolute; inset: 16px -16px -16px 16px; border: 1px solid var(--ink); z-index: -1; }
+.hero-portrait { position: relative; z-index: 1; width: min(30vw, 410px); margin: 0 1.5rem 0 0; padding-bottom: .75rem; justify-self: end; background: var(--paper); border: 1px solid var(--ink); transform: rotate(1.5deg); }
+.hero-portrait::before { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid var(--ink); z-index: -1; }
 .portrait-frame { aspect-ratio: 3 / 4; overflow: hidden; background: #c9c7c0; }
 .portrait-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 40%; filter: saturate(.86) contrast(1.02); }
-.hero-portrait figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem .2rem 0; font: 500 .55rem 'DM Mono'; letter-spacing: .08em; }
+.hero-portrait figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: .75rem .75rem 0; font: 500 .52rem 'DM Mono'; letter-spacing: .06em; }
 .hero-portrait > p { position: absolute; right: -1rem; top: 2rem; margin: 0; padding: .65rem .8rem; background: var(--acid); font: 500 .55rem/1.5 'DM Mono'; transform: rotate(2deg); }
 .hero-status { position: absolute; z-index: 2; bottom: 3vh; left: 7vw; display: flex; gap: .6rem; align-items: center; font: 500 .58rem 'DM Mono'; text-transform: uppercase; }
 .hero-status span { width: 8px; height: 8px; border-radius: 50%; background: #51c153; animation: pulse 1.7s infinite; }
